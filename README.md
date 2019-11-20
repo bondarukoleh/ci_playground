@@ -1,2 +1,2 @@
-# ci_playground
-Playing around ci processes.
+# CI Playground
+Playing around with ci processes.

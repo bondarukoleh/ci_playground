@@ -1,0 +1,5 @@
+Jenkins is an open source continuous integration CI and continuous delivery tool written in Java.
+It's an automation server used to build and deliver SW projects.
+Was forked from another a-like server Hudson, after dispute or fight with Oracle.
+Major feature in Jenkins - plugins.
+There are alternatives, but Jenkins is open source and well known.

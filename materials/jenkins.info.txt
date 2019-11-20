@@ -9,6 +9,17 @@ Jenkins is open source and well known but there are alternatives: , , but
 All developers push their changes to VCS where code tested at least once a day.
 
 CI/CD with SDLC (SW development life cycle)
-New Feature (by dev) -> Push (be dev) -> Build (by Jenkins) -> Test [Unit, Integration, Regression, Acceptance, etc]
-  (by Jenkins) -> Release [Package SW] (by Jenkins) -> Deploy (by Jenkins).
+New Feature (by dev) ->
+ Push (be dev) ->
+  Build (by Jenkins) ->
+   Test (Unit, Integration, Regression, Acceptance, etc) (by Jenkins) ->
+    Release (Package SW, to tar, zip, jar, docker) (by Jenkins) ->
+     :optional Distribute(to private storage/docker registry) ->
+      Deploy to production(by Jenkins).
 
+To install Jenkins with docker:
+mkdir -p /var/jenkins_home
+chown -R 1000:1000 /var/jenkins_home/
+docker run -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home -d --name jenkins jenkins/jenkins:lts
+
+It's cool to pack app in docker since it is isolated environment, and you can be more sure that your app works.

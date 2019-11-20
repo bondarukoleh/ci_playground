@@ -1,0 +1,15 @@
+{
+  "name": "test_ci_app",
+  "version": "1.0.0",
+  "description": "Test CI app to play around with ci/cd process",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Oleh Bondaruk",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.17.1",
+    "mocha": "6.2.2"
+  }
+}

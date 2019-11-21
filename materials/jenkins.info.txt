@@ -1,13 +1,19 @@
 Jenkins is an open source continuous integration CI and continuous delivery tool written in Java.
 It's an automation server used to build and deliver SW projects.
 Was forked from another a-like server Hudson, after dispute or fight with Oracle.
+It's cool to pack app in docker since it is isolated environment, and you can be more sure that your app works.
 Major feature in Jenkins - plugins.
-Jenkins is open source and well known but there are alternatives: , , but
+
+Jenkins is open source and well known but there are alternatives:
   - Self-hosted: Drone CI, TeamCity (by JetBrains)
   - Hosted (SaaS): Wercker, CircleCI, CodeShip, SemaphoreCI, Amazone AWS CI/CI tools.
 
-All developers push their changes to VCS where code tested at least once a day.
+Continious Integration - is the practice of merging all developer working copies to a shared mainline several
+times a day. Continious Delivery - is the approach in which teams produce SW in short cycles, ensures that.
+SW can be released in any moment. In practice CI/CD says that we will verify and publish SW by triggering
+automated builds and test.
 
+All developers push their changes to VCS where code tested at least once a day.
 CI/CD with SDLC (SW development life cycle)
 New Feature (by dev) ->
  Push (be dev) ->
@@ -21,5 +27,3 @@ To install Jenkins with docker:
 mkdir -p /var/jenkins_home
 chown -R 1000:1000 /var/jenkins_home/
 docker run -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home -d --name jenkins jenkins/jenkins:lts
-
-It's cool to pack app in docker since it is isolated environment, and you can be more sure that your app works.

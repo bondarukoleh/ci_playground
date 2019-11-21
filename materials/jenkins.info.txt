@@ -27,3 +27,6 @@ To install Jenkins with docker:
 mkdir -p /var/jenkins_home
 chown -R 1000:1000 /var/jenkins_home/
 docker run -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home -d --name jenkins jenkins/jenkins:lts
+
+After we made a jenkins with docker client we can run 
+docker run -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home -d -v /var/run/docker.sock:/var/run/docker.sock --name jenkins-docker jenkins-docker-client (depend on image name)

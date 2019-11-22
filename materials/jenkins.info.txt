@@ -44,4 +44,15 @@ So we create a job in Jenkins that will be creating jobs with DSL.
 We can download DSL scripts from repositories from Process Job DSLs Build block - but first 
   we need to approve using them. In Manage -> In-process Script Approval -> Approve
 
+If node is node executable on jenkins, since all ls or copy or npm commands is looked in $PATH
+we need to add npm to $PATH.
+Easy way to find where npm is installed.
+jenkins@$>npm start
+bash: npm: command not found
+jenkins@$>find ~ -name 'npm'
+jenkins@$>export PATH=$PATH:/var/jenkins_home/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/nodejs/bin
+
+As we can see from registryCredentials('dockerhub') in DSL script - there are id from credentials to
+  dockerhub, to push builded docker. You can add it in Credentials (left menu, not in manage) ->
+    Add -> and set ID - same as in script 'dockerhub'
 

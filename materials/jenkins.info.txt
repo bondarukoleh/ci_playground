@@ -28,5 +28,19 @@ mkdir -p /var/jenkins_home
 chown -R 1000:1000 /var/jenkins_home/
 docker run -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home -d --name jenkins jenkins/jenkins:lts
 
-After we made a jenkins with docker client we can run 
-docker run -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home -d -v /var/run/docker.sock:/var/run/docker.sock --name jenkins-docker jenkins-docker-client (depend on image name)
+We can make a jenkins with docker client, so jenkins container can run docker commands.
+
+It's easy to setup Jenkins via UI. But there are several disadvantages of this approach:
+- No audit trail, you'll never know who make a change, that break something.
+- No history of changes, you don't know what was changed, that break something.
+- No ability to easy backup or restore Jenkins setup.
+- Usually developers don't have rights to change Jenkins setup, admins have, it takes time.
+
+Many of those troubles will be solved if we will store Jenkins setup in Jenkins DSL, in VCS.
+
+Job DSL - Jenkins plugin that allows to define jobs in programmatic way. It use Groovy based language
+ Groovy - is like scripting language for Java platform.
+
+
+
+

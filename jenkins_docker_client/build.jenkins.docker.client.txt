@@ -1,0 +1,6 @@
+root$>docker build -t jenkins-docker-client:latest -f ./jenkins_docker_client/Dockerfile .
+user$>docker run -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home -d -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) --name jenkins-docker jenkins-docker-client
+user$>docker exec -it jenkins-docker bash
+jenkins$>docker ps (you should see  yourself jenkins-docker container running)
+
+

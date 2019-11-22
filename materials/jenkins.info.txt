@@ -8,8 +8,8 @@ Jenkins is open source and well known but there are alternatives:
   - Self-hosted: Drone CI, TeamCity (by JetBrains)
   - Hosted (SaaS): Wercker, CircleCI, CodeShip, SemaphoreCI, Amazone AWS CI/CI tools.
 
-Continious Integration - is the practice of merging all developer working copies to a shared mainline several
-times a day. Continious Delivery - is the approach in which teams produce SW in short cycles, ensures that.
+Continuous Integration - is the practice of merging all developer working copies to a shared mainline several
+times a day. Continuous Delivery - is the approach in which teams produce SW in short cycles, ensures that.
 SW can be released in any moment. In practice CI/CD says that we will verify and publish SW by triggering
 automated builds and test.
 
@@ -38,8 +38,9 @@ It's easy to setup Jenkins via UI. But there are several disadvantages of this a
 
 Many of those troubles will be solved if we will store Jenkins setup in Jenkins DSL, in VCS.
 
+Jenkins Jobs
 Job DSL - Jenkins plugin that allows to define jobs in programmatic way. It use Groovy based language
- Groovy - is like scripting language for Java platform.
+ Groovy - is like scripting language for Java platform, runs in JVM.
 So we create a job in Jenkins that will be creating jobs with DSL.
 We can download DSL scripts from repositories from Process Job DSLs Build block - but first 
   we need to approve using them. In Manage -> In-process Script Approval -> Approve
@@ -56,3 +57,15 @@ As we can see from registryCredentials('dockerhub') in DSL script - there are id
   dockerhub, to push builded docker. You can add it in Credentials (left menu, not in manage) ->
     Add -> and set ID - same as in script 'dockerhub'
 
+Jenkins Pipelines
+Allow you to write Jenkins build steps in code.
+Build steps allow you to write: build (compile), test, deploy in code, mean you can put setup
+for all of these steps - in VCS.
+It's a way to automate SDLC.
+Pipelines is a type of Jobs, we can do a huge "free style" Job and do same as in pipeline,
+difference is in implementation in Jenkins.
+Cool feature - is "Organization folder" - pipeline job that have separately diff repositories,
+and you can logically divide build steps.
+
+Pipeline can be created via UI or Job DSL (Jenkins DSL or Groovy script) 
+Jenkins DSL will be interpreted by Groovy under the hood anyway.

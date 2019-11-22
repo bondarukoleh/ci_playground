@@ -20,8 +20,6 @@ job("Node_test_app") {
   }
 
   steps {
-    shell("Hello! This is a step created with dsl language.")
-    shell("cd ./src")
-    shell("npm install")
+    shell("echo Hello! This is a step created with dsl language.; \n cd ./src; \n npm install;")
   }
 }

@@ -40,7 +40,8 @@ Many of those troubles will be solved if we will store Jenkins setup in Jenkins 
 
 Job DSL - Jenkins plugin that allows to define jobs in programmatic way. It use Groovy based language
  Groovy - is like scripting language for Java platform.
-
-
+So we create a job in Jenkins that will be creating jobs with DSL.
+We can download DSL scripts from repositories from Process Job DSLs Build block - but first 
+  we need to approve using them. In Manage -> In-process Script Approval -> Approve
 
 

@@ -4,7 +4,8 @@
   "description": "Test CI app to play around with ci/cd process",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node ./src/server.js",
+    "start:withDB": "node ./src/server.db.js",
     "start:dev": "nodemon",
     "test": "mocha ./src/specs/**/*.spec.js",
     "clean": "rm -rf ./node_modules"
@@ -12,7 +13,8 @@
   "author": "Oleh Bondaruk",
   "license": "ISC",
   "dependencies": {
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "mysql": "^2.17.1"
   },
   "devDependencies": {
     "mocha": "^6.2.2",
@@ -22,8 +24,8 @@
     "ignore": [
       ".git"
     ],
-    "watch": "index.js",
-    "exec": "node index.js"
+    "watch": "./src/server.js",
+    "exec": "node ./src/server.js"
   },
   "repository": {
     "type": "git",

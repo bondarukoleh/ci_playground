@@ -73,5 +73,28 @@ Jenkins DSL will be interpreted by Groovy under the hood anyway.
 Pay attention, when you did a job groovy script - you created a general project
 that creates a job from provided job script. When you do a pipeline - it doesn't
 create some extra entities like another pipeline or job - it is a pipeline that
-would do the steps described in script. But still you've created pipeline manualy,
+would do the steps described in script. But still you've created pipeline manually,
 which I think could be done in code.
+
+Benefits of keeping jenkins pipeline groovy script within the app code is huge.
+You don't need the taskFile.sh or start-tests.sh in your library, you don't need
+to change anything, in your created pipeline on Jenkins side - changes in app code
+can be supported in jenkins file that lies here with the code, incredible.
+
+Docker pipeline let's you not only build but run any container within pipeline.
+For example you want to pack app inside the container, but only production code,
+and still want to test and develop it in isolated environment mean use containers.
+So we can build a large container with tests and all stuff, run it, test it, 
+and then build a container only with tested prod code and push it.
+
+Also we can add any container with some stuff, during Pipeline, use it, and remove
+after tests are done e.g. container with test mocked DB, run tests on it, and 
+remove it after testing stage. Also it works with multiple builds at the same time,
+e.g. you are building a few versions of app - and you'll get a clean new DB container
+for each of those which is pretty cool.
+
+It's an alternative way to run for instance node commands - you remember that you need
+to setup "Build Environment" for Jenkins and put a NodeJS installation path in it?
+It's much better way to have ability to get NodeJS environment dynamically with
+different versions of it.
+

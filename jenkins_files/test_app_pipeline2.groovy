@@ -53,9 +53,9 @@ node {
 
     // send email
     if(to != null && !to.isEmpty()) {
-      emailext(body: content, mimeType: 'text/html',
-         replyTo: '$DEFAULT_REPLYTO', subject: subject, /*Reply To List in Jenkins config*/
-         to: to, attachLog: true )
+      // emailext(body: content, mimeType: 'text/html',
+      //    replyTo: '$DEFAULT_REPLYTO', subject: subject, /*Reply To List in Jenkins config*/
+      //    to: to, attachLog: true )
     }
 
     // mark current build as a failure and throw the error

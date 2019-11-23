@@ -116,7 +116,7 @@ run in the same working directory (normally a Jenkins agent workspace), which me
 the Docker server must be on localhost.
 
 Emailing
-We can send an email with build result.
+We can send an email with build result. But be aware that google will fight with this.
 The earlier dev gets the fail the better, solution is more or less fresh in his head,
 and he can fix it more quickly.
 Build should run on each commit in master branch.
@@ -126,4 +126,10 @@ change? This functionality is in Jenkins.
 Or Jenkins could be pushed from VSC - there was some change - make a build. There are
 a few plugins github, bitbucket to configure this functionality.
 
-
+Slack integration.
+So we can see messages like build failure, someone picked up this problem, someone
+pushed new changes, Jenkins start a job, Jenkins job was successful, new build is
+packed and pushed to registry, new build was deployed on est env, Jenkins says
+that everything green again and devs could working further, etc. - this called ChatOps.
+So everyone has up-to-date information about the builds, everyone has same history
+in chat, and everyone happy.

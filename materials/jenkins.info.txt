@@ -42,7 +42,7 @@ Jenkins Jobs
 Job DSL - Jenkins plugin that allows to define jobs in programmatic way. It use Groovy based language
  Groovy - is like scripting language for Java platform, runs in JVM.
 So we create a job in Jenkins that will be creating jobs with DSL.
-We can download DSL scripts from repositories from Process Job DSLs Build block - but first 
+We can download DSL scripts from repositories from Process Job DSLs Build block - but first
   we need to approve using them. In Manage -> In-process Script Approval -> Approve
 
 If node is node executable on jenkins, since all ls or copy or npm commands is looked in $PATH
@@ -67,7 +67,7 @@ difference is in implementation in Jenkins.
 Cool feature - is "Organization folder" - pipeline job that have separately diff repositories,
 and you can logically divide build steps.
 
-Pipeline can be created via UI or Job DSL (Jenkins DSL or Groovy script) 
+Pipeline can be created via UI or Job DSL (Jenkins DSL or Groovy script)
 Jenkins DSL will be interpreted by Groovy under the hood anyway.
 
 Pay attention, when you did a job groovy script - you created a general project
@@ -84,11 +84,11 @@ can be supported in jenkins file that lies here with the code, incredible.
 Docker pipeline let's you not only build but run any container within pipeline.
 For example you want to pack app inside the container, but only production code,
 and still want to test and develop it in isolated environment mean use containers.
-So we can build a large container with tests and all stuff, run it, test it, 
+So we can build a large container with tests and all stuff, run it, test it,
 and then build a container only with tested prod code and push it.
 
 Also we can add any container with some stuff, during Pipeline, use it, and remove
-after tests are done e.g. container with test mocked DB, run tests on it, and 
+after tests are done e.g. container with test mocked DB, run tests on it, and
 remove it after testing stage. Also it works with multiple builds at the same time,
 e.g. you are building a few versions of app - and you'll get a clean new DB container
 for each of those which is pretty cool.
@@ -97,4 +97,33 @@ It's an alternative way to run for instance node commands - you remember that yo
 to setup "Build Environment" for Jenkins and put a NodeJS installation path in it?
 It's much better way to have ability to get NodeJS environment dynamically with
 different versions of it.
+
+**Note about inside, run, withRun:
+Image.run([args, command])
+Uses docker run to run the image, and returns a Container which you could stop later.
+Additional args may be added, such as '-p 8080:8080 --memory-swap=-1'. Optional command
+is equivalent to Docker command specified after the image. Records a run fingerprint in
+the build.
+
+Image.withRun[(args[, command])] {…}
+Like run but stops the container as soon as its body exits, so you do not need a try-finally
+block.
+
+Image.inside[(args)] {…}
+Like withRun this starts a container for the duration of the body, but all external commands
+(sh) launched by the body run inside the container rather than on the host. These commands
+run in the same working directory (normally a Jenkins agent workspace), which means that
+the Docker server must be on localhost.
+
+Emailing
+We can send an email with build result.
+The earlier dev gets the fail the better, solution is more or less fresh in his head,
+and he can fix it more quickly.
+Build should run on each commit in master branch.
+VSC can be pulled by Jenkins, means Jenkins asking e.g. each 5 minutes - is there any
+change? This functionality is in Jenkins.
+
+Or Jenkins could be pushed from VSC - there was some change - make a build. There are
+a few plugins github, bitbucket to configure this functionality.
+
 

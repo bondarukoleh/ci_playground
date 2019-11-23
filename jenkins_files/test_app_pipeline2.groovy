@@ -46,7 +46,7 @@ node {
 		}
 	} catch(e) {
 		// mark build as failed
-    currentBuild.result = "FAILURE";
+    // currentBuild.result = "FAILURE";
     // set variables
     def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} ${currentBuild.result}"
     def content = '${JELLY_SCRIPT,template="html"}' /*JELLY_SCRIPT - from extention*/
@@ -59,7 +59,7 @@ node {
     }
 
     // mark current build as a failure and throw the error
-    throw e; /*or we can make this stage optional and not failing it*/
+    // throw e; /*or we can make this stage optional and not failing it*/
 	}
 
 

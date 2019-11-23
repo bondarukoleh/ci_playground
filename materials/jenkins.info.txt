@@ -69,3 +69,9 @@ and you can logically divide build steps.
 
 Pipeline can be created via UI or Job DSL (Jenkins DSL or Groovy script) 
 Jenkins DSL will be interpreted by Groovy under the hood anyway.
+
+Pay attention, when you did a job groovy script - you created a general project
+that creates a job from provided job script. When you do a pipeline - it doesn't
+create some extra entities like another pipeline or job - it is a pipeline that
+would do the steps described in script. But still you've created pipeline manualy,
+which I think could be done in code.

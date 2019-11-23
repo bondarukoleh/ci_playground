@@ -6,20 +6,23 @@
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon",
-    "test": "mocha"
+    "test": "mocha ./test/**/*.spec.js",
+    "clean": "rm -rf ./node_modules"
   },
   "author": "Oleh Bondaruk",
   "license": "ISC",
   "dependencies": {
-    "express": "4.17.1",
-    "mocha": "6.2.2"
+    "express": "4.17.1"
   },
   "nodemonConfig": {
-    "ignore": [".git"],
+    "ignore": [
+      ".git"
+    ],
     "watch": "index.js",
     "exec": "node index.js"
   },
   "devDependencies": {
+    "mocha": "^6.2.2",
     "nodemon": "2.0.0"
   }
 }

@@ -16,7 +16,7 @@ node {
    stage('docker build/push') {
      /*https://index.docker.io/v1/ - It"s a dockerhub, 'dockerhub' - cred id that we have in jenkins*/
      docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-       docker.build("'bondarukoleh/docker_test_app:${currentCommitId}", '.').push() /*. path where Docker file is*/
+       docker.build("bondarukoleh/docker_test_app:${currentCommitId}", '.').push() /*. path where Docker file is*/
      }
    }
 }

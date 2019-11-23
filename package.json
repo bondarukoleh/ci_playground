@@ -6,13 +6,17 @@
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon",
-    "test": "mocha ./test/**/*.spec.js",
+    "test": "mocha ./src/test/**/*.spec.js",
     "clean": "rm -rf ./node_modules"
   },
   "author": "Oleh Bondaruk",
   "license": "ISC",
   "dependencies": {
     "express": "4.17.1"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.2",
+    "nodemon": "2.0.0"
   },
   "nodemonConfig": {
     "ignore": [
@@ -21,8 +25,8 @@
     "watch": "index.js",
     "exec": "node index.js"
   },
-  "devDependencies": {
-    "mocha": "^6.2.2",
-    "nodemon": "2.0.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bondarukoleh/ci_playgroung.git"
   }
 }

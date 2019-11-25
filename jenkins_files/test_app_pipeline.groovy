@@ -25,7 +25,7 @@ try {
 stage('Sonar-scan') {
   def sonarqubeScannerHome = tool name: 'Sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
   withCredentials([string(credentialsId: 'sonar_admin', variable: 'sonarLogin')]) {
-    sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName=Node_app -Dsonar.projectVersion=${env.BUILD_NUMBER} -Dsonar.projectKey=NAP -Dsonar.sources=src/ -Dsonar.tests=src/specs/ -Dsonar.language=javascript"
+    sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName=Node_app -Dsonar.projectVersion=${env.BUILD_NUMBER} -Dsonar.projectKey=NAP -Dsonar.sources=src/** -Dsonar.tests=src/specs/** -Dsonar.language=javascript"
   }
 }
 

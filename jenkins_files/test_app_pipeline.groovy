@@ -6,7 +6,7 @@ node {
      currentCommitId = readFile('.git/currentCommitId').trim()
    }
 
-try{
+try {
 	stage('Test') {
      nodejs(nodeJSInstallationName: 'nodejs') {
        sh 'npm install'
@@ -20,6 +20,13 @@ try{
 		def num = env.BUILD_NUMBER
 		def url = env.BUILD_URL
 		slackSend (color: '#FF0000', message: "Failed Custom stage: '${name} [${num}]' (${url}) \n Error: ${e}")
+}
+
+stage('Sonar-scan') {
+  def sonarqubeScannerHome = tool name: 'Sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+  withCredentials([string(credentialsId: 'sonar_admin', variable: 'sonarLogin')]) {
+    sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName=Node_app -Dsonar.projectVersion=${env.BUILD_NUMBER} -Dsonar.projectKey=NAP -Dsonar.sources=src/ -Dsonar.tests=src/test/ -Dsonar.language=javascript"
+  }
 }
 
   //  stage('Docker build/push') {

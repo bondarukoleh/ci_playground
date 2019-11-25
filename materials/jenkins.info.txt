@@ -133,3 +133,45 @@ packed and pushed to registry, new build was deployed on est env, Jenkins says
 that everything green again and devs could working further, etc. - this called ChatOps.
 So everyone has up-to-date information about the builds, everyone has same history
 in chat, and everyone happy.
+
+We can add integration via webhooks, and this is pretty powerful tool - you can setup to send pictures,
+maybe some tables, many kids of data to slack via POST message.
+Or we can use Jenkins CI plugin in Slack - and some regular slack plugin in Jenkins.
+
+VCS integration.
+Jenkins can autoscan all branches and repositories in Github organization or teams/projects in Bitbucket
+with GitHub/Bitbucket Branch Source plugin. It gives ability to automatically create projects from those
+sources and don't do anything, Jenkins will do all job by himself - cool.
+
+So we can create a "Github organization" project in Jenkins, and setup a connection to some organization
+in github, set a patterns to find needed branches and files - and don't bother creating a pipelines manually.
+Jenkins will scan repositories and branches and will create a pipeline by himself.
+It's a coll feature when we have a lot of projects, and a lot of repositories with a few branches - and
+can test separately microservice from My_Project -> Firewall_repo -> new_feature_branch pipeline project,
+When developer creates a new branch -> Jenkins scans it and creates a new job with this branch - and dev can
+change something - and re-run this job - which will make a new build of this ob with new artifact, and you
+can just sit and relax. Looks great.
+
+We can use JFrog artifactory plugin to intergare with JFrog - artifactory store, place where we can keep
+job artifacts.
+
+
+Custom API integration
+Jenkins has http request plugin - that allows you to make http requests. You can install it and in jenkins
+file, depend on stage and results - make a requests to your super custom service.
+To understand format of requests from Jenkins we can use helper. Go to your pipeline -> configure ->
+pipeline-syntax -> and there are a lot of stuff that you can use node commands, read files, and http requests
+ if appropriate the plugin installed.
+
+Sonarqube integration.
+Sonarqube continuously inspects you code on:
+- Bugs (code issues)
+- Vulnerabilities (security issues)
+- Code smells (maintainability issues)
+- Technical dept (estimated time required to fix)
+- Code coverage (test coverage of code)
+
+In Jenkins usually it's a build step - code scanning with plugin. Sonarqube sends results to sonarqube server,
+it needs to be installed, server uses PostgreSQL DB to maintain it's state.
+We can run the sonarqube server and DB in docker containers on master node near the Jenkins container e.g.
+We will use docker-compose, don't forget that it needs to be installed separately from docker.

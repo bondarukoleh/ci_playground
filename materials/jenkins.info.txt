@@ -175,3 +175,35 @@ In Jenkins usually it's a build step - code scanning with plugin. Sonarqube send
 it needs to be installed, server uses PostgreSQL DB to maintain it's state.
 We can run the sonarqube server and DB in docker containers on master node near the Jenkins container e.g.
 We will use docker-compose, don't forget that it needs to be installed separately from docker.
+
+Jenkins Slaves
+In production it's usual to have one small master node, where Jenkins UI is running, and one or more
+worker nodes, Jenkins slaves - to expand build capacity. Typically one worker - has one or more build
+executors (building slots). If Jenkins node has 2 executors - it can build only 2 builds in parallel.
+Static (manual) / dynamic scaling
+A way to setup number of workers that should be increased or available in working hours, or maybe added
+adhoc when all are busy, and reducing or not-available workers in non-worker hours.
+e.g. Amazon EC2 plugin lets you scale the workers automatically and kill them when they aren't busy.
+Docker plugin - using a docker host can run a jenkins-docker slave to do some work, and then kill it.
+Amazon ECS plugin - same as Docker but uses docker orchestrator EC2 Container engine (amazon docker cluster
+that you need to setup) to rule docker-slaves.
+Digital ocean plugin - dynamically provisions droplets to be used as jenkins slaves.
+Builds can be executed on specific nodes. Nodes can be labeled, and setup from UI or in jenkinsfile.
+Benefits (cloud mostly):
+- scalability - pay only for working hours
+- slaves can be easily replaced (if crashed) (with properly installed)
+- slave is not affecting the master node - if it took 100% CPU - you can still manage master.
+
+Do not install tools manually use everything in dockers, or in plugins. We need to have stupid slave
+easy to remove and switch, because all environment should be provided in code, from master node.
+
+Two ways to connection between slave and master:
+- from master to slave via ssh.
+- from slave to master via JNLP (good if slaves behind firewall, these slaves they should
+only have java installed and you can connect them with one click without ssh headache, they
+will be connected via JNLP protocol)
+
+When you want to setup ssh connection, you have to create .shh keys on slave machine (via script)
+add a .pub master key to slave, draft script you can find in materials zip.
+
+

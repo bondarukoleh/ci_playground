@@ -206,4 +206,12 @@ will be connected via JNLP protocol)
 When you want to setup ssh connection, you have to create .shh keys on slave machine (via script)
 add a .pub master key to slave, draft script you can find in materials zip.
 
-Blue Ocen - is a new UI plugin for Jenkins. Not fully, but it will replace with time an old UI.
+Blue Ocean - is a new UI plugin for Jenkins. Not fully, but it will replace with time an old UI.
+
+SSH-agent
+When you need to reach private repo from jenkins - one way is manually generate pub/private keys
+on machine, and pass pub key to github account, but private key you need to store in jenkins.
+We can install SSH Agent plugin, and use "sshagent(credentials: ['my_git_cred_id']){}" in jenkins
+file to get private repo, but still private key will be on Jenkins side. Maybe we can restrict
+access to it, but still don't get why is is useful.
+

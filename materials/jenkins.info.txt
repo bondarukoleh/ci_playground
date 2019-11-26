@@ -212,6 +212,54 @@ SSH-agent
 When you need to reach private repo from jenkins - one way is manually generate pub/private keys
 on machine, and pass pub key to github account, but private key you need to store in jenkins.
 We can install SSH Agent plugin, and use "sshagent(credentials: ['my_git_cred_id']){}" in jenkins
-file to get private repo, but still private key will be on Jenkins side. Maybe we can restrict
-access to it, but still don't get why is is useful.
+file to get private repo, but still private key will be on Jenkins side. The cool thing about it -
+that you don't need to manually add a credentials for repo - you can create them in jenkins and
+use in jenkins file. Also - even if you manually added a credentials in you pipeline - you cannot
+use them without sshagent from jenkinsfile, from the code, that's the thing. And it should run
+on slave jenkins also - so the idea not to manually setup slave machine - but reach repo with
+credentials that stored on master jenkins - that the thins as far as i get.
+
+To easy add pub ssh key from github to the jenkins machine
+ssh-keyscan github.com >> /var/jenkins_home/.ssh/known_hosts
+
+Security
+Try to store your Jenkins up-to-date (lts) behind VPN or Firewall (with github/bitbucket in whitelist).
+Authentication and Authorization
+Authentication - verifying identity of a user or a process. "Are you who you've claimed you are?"
+Authorization - verifying that some user or process has access to resource it asked. Do you have permissions
+to do what you want to do?
+
+Authorization:
+- anyone can do anything
+- anyone who logged in can do anything
+- Matrix based authorization (table with user/access rows)
+
+In Jenkins it is a RoleStrategy plugin - that implements extended Matrix based authorization.
+If something goes wrong, and you've locked yourself:
+$>docker stop jenkins
+$>vim /var/jenkins_home/config.xml
+<useSecurity>false</useSecurity> - remove or edit
+<authorizationStrategy class="hudson.security.ProjectMatrixAuthorizationStrategy">
+<permissions>hudson.model.Hudson.Administer:YOUR_USER</permissions>
+</authorizationStrategy>
+$>docker start jenkins
+
+For security we go to Manage jenkins -> Configure Global Security
+We can see that Jenkins expose two ports 8080 and 50000 - for slaves. (TCP port and JNLP protocol)
+So these ports should be blocked if you put Jenkins behind firewall.
+In Authorization part - you can choose the strategy, for example matrix based.
+You can check users in Main Jenkins left panel -> People.
+
+Jenkins users
+Common practice is to store user in some database, not in jenkins.
+Companies often using directory service like Active Directory or LDAP
+Directory service - is a hierarchy access control server, that provide access to some resource
+depend on it's class (basically something like it)
+So it's a common practice to connect Jenkins to such service in Security Realm part of
+Configure Global Security.
+AD service can be your own or hosted solution.
+One of the nice identity provider hosted solutions - onelogin.com
+We can link Jenkins to onelogin using SAML (another option near LDAP, to use - install plugin)
+SAML - Security Assertion Markup Language, xml based open-standard data format for exchanging
+authentication and authorization data between parties.
 

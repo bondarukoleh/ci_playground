@@ -9,6 +9,3 @@ trim_trailing_whitespace = true
 [**.{js,groovy}]
 indent_style = tab
 indent_size = 2
-
-[**.js]
-insert_final_newline = true

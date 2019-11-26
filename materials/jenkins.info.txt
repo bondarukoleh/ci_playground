@@ -54,7 +54,7 @@ jenkins@$>find ~ -name 'npm'
 jenkins@$>export PATH=$PATH:/var/jenkins_home/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/nodejs/bin
 
 As we can see from registryCredentials('dockerhub') in DSL script - there are id from credentials to
-  dockerhub, to push builded docker. You can add it in Credentials (left menu, not in manage) ->
+  dockerhub, to push created image. You can add it in Credentials (left menu, not in manage) ->
     Add -> and set ID - same as in script 'dockerhub'
 
 Jenkins Pipelines
@@ -152,7 +152,7 @@ When developer creates a new branch -> Jenkins scans it and creates a new job wi
 change something - and re-run this job - which will make a new build of this ob with new artifact, and you
 can just sit and relax. Looks great.
 
-We can use JFrog artifactory plugin to intergare with JFrog - artifactory store, place where we can keep
+We can use JFrog artifactory plugin to integrate with JFrog - artifactory store, place where we can keep
 job artifacts.
 
 
@@ -206,4 +206,4 @@ will be connected via JNLP protocol)
 When you want to setup ssh connection, you have to create .shh keys on slave machine (via script)
 add a .pub master key to slave, draft script you can find in materials zip.
 
-
+Blue Ocen - is a new UI plugin for Jenkins. Not fully, but it will replace with time an old UI.

@@ -1,2 +1,5 @@
 * text=auto
-*.sh eol=lf
+*.groovy text eol=lf
+*.yml text eol=lf
+Dockerfile text eol=lf
+*.jenkinsfile text eol=lf

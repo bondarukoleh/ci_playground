@@ -53,6 +53,8 @@ bash: npm: command not found
 jenkins@$>find ~ -name 'npm'
 jenkins@$>export PATH=$PATH:/var/jenkins_home/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/nodejs/bin
 
+Also don't forget that you need to enable the "Provide Node & npm bin/ folder to PATH" in job configuration
+
 As we can see from registryCredentials('dockerhub') in DSL script - there are id from credentials to
   dockerhub, to push created image. You can add it in Credentials (left menu, not in manage) ->
     Add -> and set ID - same as in script 'dockerhub'
@@ -262,4 +264,12 @@ One of the nice identity provider hosted solutions - onelogin.com
 We can link Jenkins to onelogin using SAML (another option near LDAP, to use - install plugin)
 SAML - Security Assertion Markup Language, xml based open-standard data format for exchanging
 authentication and authorization data between parties.
+
+Allure
+Simple manually adding allure.
+In Jenkins "Plugin manager" install Allure plugin. Restart Jenkins.
+In Jenkins "Global Tool Configuration" add Allure Commandline with versions.
+In Job configuration add Post build action "Allure Report"
+
+Check the https://docs.qameta.io/allure/#_jenkins
 

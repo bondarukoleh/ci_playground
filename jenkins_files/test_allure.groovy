@@ -14,8 +14,8 @@ job("Test Allure") {
     nodejs("nodejs")
   }
 
-	steps {
-		sh 'npm i --no-audit'
-		sh 'npm t'
+  steps {
+    shell("npm i")
+    shell("npm t")
   }
 }

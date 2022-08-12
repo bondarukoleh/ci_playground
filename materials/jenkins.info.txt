@@ -273,3 +273,6 @@ In Job configuration add Post build action "Allure Report"
 
 Check the https://docs.qameta.io/allure/#_jenkins
 
+Magic in groovy files job(), shell(), etc. - it's a Job DSL plugin
+https://plugins.jenkins.io/job-dsl/
+https://jenkinsci.github.io/job-dsl-plugin/#

@@ -15,7 +15,10 @@ job("Test Allure") {
   }
 
   steps {
-    shell("npm i")
-    shell("npm t")
+    shell("npm i; \n npm t;")
   }
+
+	publishers {
+    allure(['allure-results'])
+	}
 }

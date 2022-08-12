@@ -11,15 +11,18 @@ pipeline {
   		steps {
     		shell("npm i; \n npm t;")
   		}
+			post {
+				always {
+					/* JAVA_HOME should be available */
+					allure([
+        		includeProperties: false,
+        		jdk: '',
+        		properties: [],
+        		reportBuildPolicy: 'ALWAYS',
+        		results: [[path: 'allure-results']]
+      		])
+				}
+			}
 	  }
-		post {
-			allure([
-        includeProperties: false,
-        jdk: '',
-        properties: [],
-        reportBuildPolicy: 'ALWAYS',
-        results: [[path: 'target/allure-results']]
-      ])
-		}
 	}
 }

@@ -14,7 +14,7 @@ job("Test Allure") {
     nodejs("nodejs")
   }
 
-	stage('Testing') {
+	steps {
 		sh 'npm i --no-audit'
 		sh 'npm t'
   }

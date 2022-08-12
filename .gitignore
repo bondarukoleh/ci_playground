@@ -12,3 +12,4 @@ build
 # Dependency directories
 node_modules/
 
+allure*

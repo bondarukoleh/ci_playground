@@ -7,13 +7,14 @@
     "start": "node ./src/server.js",
     "start:withDB": "node ./src/server.db.js",
     "start:dev": "nodemon",
-    "test": "mocha ./src/specs/**/*.spec.js",
+    "test": "mocha ./src/specs/**/*.spec.js --reporter mocha-allure-reporter",
     "clean": "rm -rf ./node_modules"
   },
   "author": "Oleh Bondaruk",
   "license": "ISC",
   "dependencies": {
     "express": "4.17.1",
+    "mocha-allure-reporter": "1.4.0",
     "mysql": "^2.17.1"
   },
   "devDependencies": {

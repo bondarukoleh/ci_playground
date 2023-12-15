@@ -19,7 +19,7 @@ node {
       sh 'npm i --no-audit'
       sh 'npm t'
     }
-	 /*asfter commands executed - container destroyed, and next stage goes*/
+	 /*after commands executed - container destroyed, and next stage goes*/
   }
 
   stage('Test with a DB') {

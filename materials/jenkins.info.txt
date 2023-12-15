@@ -45,7 +45,7 @@ So we create a job in Jenkins that will be creating jobs with DSL.
 We can download DSL scripts from repositories from Process Job DSLs Build block - but first
   we need to approve using them. In Manage -> In-process Script Approval -> Approve
 
-If node is node executable on jenkins, since all ls or copy or npm commands is looked in $PATH
+If node is executable on jenkins, since all ls or copy or npm commands is looked in $PATH
 we need to add npm to $PATH.
 Easy way to find where npm is installed.
 jenkins@$>npm start
@@ -217,7 +217,7 @@ that you don't need to manually add a credentials for repo - you can create them
 use in jenkins file. Also - even if you manually added a credentials in you pipeline - you cannot
 use them without sshagent from jenkinsfile, from the code, that's the thing. And it should run
 on slave jenkins also - so the idea not to manually setup slave machine - but reach repo with
-credentials that stored on master jenkins - that the thins as far as i get.
+credentials that stored on master jenkins - that the things as far as i get.
 
 To easy add pub ssh key from github to the jenkins machine
 ssh-keyscan github.com >> /var/jenkins_home/.ssh/known_hosts
